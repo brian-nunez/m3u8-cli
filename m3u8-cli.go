@@ -13,6 +13,7 @@ func main() {
 	output := flag.String("output", "output.mp4", "Output filename")
 	outputDir := flag.String("output-dir", ".", "Directory to save the output file")
 	timeout := flag.Int("timeout", 30, "Timeout in seconds for stalled downloads")
+	quiet := flag.Bool("quiet", false, "Suppress ffmpeg output logs")
 
 	flag.Parse()
 
@@ -40,8 +41,13 @@ func main() {
 		outputPath,
 	)
 
-	cmd.Stdout = os.Stdout
-	cmd.Stderr = os.Stderr
+	if *quiet {
+		cmd.Stdout = nil
+		cmd.Stderr = nil
+	} else {
+		cmd.Stdout = os.Stdout
+		cmd.Stderr = os.Stderr
+	}
 
 	fmt.Println("Starting download...")
 
