@@ -12,6 +12,7 @@ func main() {
 	url := flag.String("url", "", "The URL of the .m3u8 playlist")
 	output := flag.String("output", "output.mp4", "Output filename")
 	outputDir := flag.String("output-dir", ".", "Directory to save the output file")
+	timeout := flag.Int("timeout", 30, "Timeout in seconds for stalled downloads")
 
 	flag.Parse()
 
@@ -24,6 +25,7 @@ func main() {
 
 	cmd := exec.Command(
 		"ffmpeg",
+		"-rw_timeout", fmt.Sprintf("%d", *timeout*1000000),
 		"-i", *url,
 		"-c", "copy",
 		"-bsf:a", "aac_adtstoasc",
