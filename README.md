@@ -41,7 +41,7 @@ m3u8-cli --help
 
 ---
 
-🛠️ Available Flags
+## 🛠️ Available Flags
 
 | Flag           | Type   | Default      | Description                                 |
 |:-------------- |:------ |:------------ |:------------------------------------------- |
@@ -55,7 +55,7 @@ m3u8-cli --help
 
 ---
 
-📝 Examples
+## 📝 Examples
 
 Download a playlist quietly:
 
@@ -77,14 +77,14 @@ m3u8-cli --version
 
 ---
 
-⚡ Requirements
+## ⚡ Requirements
 
 * Go 1.21+ to build
 * ffmpeg installed and available in your system’s PATH
 
 ---
 
-✨ License
+## ✨ License
 
 See LICENSE file for details.
 
