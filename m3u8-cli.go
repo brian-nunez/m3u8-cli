@@ -8,7 +8,11 @@ import (
 	"path/filepath"
 )
 
+const version = "v0.0.1"
+
 func main() {
+	fmt.Printf("🎬 m3u8-download %s\n\n", version)
+
 	url := flag.String("url", "", "The URL of the .m3u8 playlist")
 	output := flag.String("output", "output.mp4", "Output filename")
 	outputDir := flag.String("output-dir", ".", "Directory to save the output file")
