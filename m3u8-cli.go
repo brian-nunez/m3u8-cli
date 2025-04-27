@@ -5,11 +5,13 @@ import (
 	"fmt"
 	"os"
 	"os/exec"
+	"path/filepath"
 )
 
 func main() {
 	url := flag.String("url", "", "The URL of the .m3u8 playlist")
 	output := flag.String("output", "output.mp4", "Output filename")
+	outputDir := flag.String("output-dir", ".", "Directory to save the output file")
 
 	flag.Parse()
 
@@ -18,12 +20,14 @@ func main() {
 		os.Exit(1)
 	}
 
+	outputPath := filepath.Join(*outputDir, *output)
+
 	cmd := exec.Command(
 		"ffmpeg",
 		"-i", *url,
 		"-c", "copy",
 		"-bsf:a", "aac_adtstoasc",
-		*output,
+		outputPath,
 	)
 
 	cmd.Stdout = os.Stdout
