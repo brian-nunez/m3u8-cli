@@ -21,6 +21,14 @@ func main() {
 		os.Exit(1)
 	}
 
+	if stat, err := os.Stat(*outputDir); err != nil {
+		fmt.Printf("Error: output directory does not exist: %s\n", *outputDir)
+		os.Exit(1)
+	} else if !stat.IsDir() {
+		fmt.Printf("Error: output path is not a directory: %s\n", *outputDir)
+		os.Exit(1)
+	}
+
 	outputPath := filepath.Join(*outputDir, *output)
 
 	cmd := exec.Command(
